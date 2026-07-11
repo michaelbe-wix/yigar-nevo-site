@@ -1,0 +1,44 @@
+---
+// Blog post — dynamic route. Body is rendered by the React app (Wix Ricos viewer);
+// SEO tags are resolved natively from the actual Wix Blog post via @wix/seo, so the
+// page gets the real title/description/canonical/OG/JSON-LD instead of a generic default.
+import Layout from '../../layouts/Layout.astro';
+import App from '../../components/App.tsx';
+import { fetchPublishedSlugsServer } from '../../lib/blogServer';
+import { WIX_APPS } from '@wix/essentials';
+import { SEO } from '@wix/seo/components';
+import { loadSEOTagsServiceConfig } from '@wix/seo/services';
+import { seoTags } from '@wix/seo';
+
+// Register this route as the Wix Blog post item page (reference WIX_APPS directly — it's a
+// module-level export and local vars aren't in scope here).
+export const wixMetadata = {
+  appDefId: WIX_APPS.blogs.id,
+  pageIdentifier: WIX_APPS.blogs.postPageMetadata.pageIdentifier,
+  identifiers: { slug: WIX_APPS.blogs.postPageMetadata.identifiers.slug },
+};
+
+const raw = Astro.params.slug ?? '';
+let slug = raw;
+try { slug = decodeURIComponent(raw); } catch { /* keep */ }
+// Serve any real published post; 404 unknown slugs. (If the API is unreachable we don't
+// hard-404, to avoid false negatives.)
+const slugs = await fetchPublishedSlugsServer();
+const known = slugs.length === 0 || slugs.some((s) => s === slug || s === raw);
+if (!known) return new Response('Not Found', { status: 404 });
+
+let seoTagsServiceConfig: any = null;
+try {
+  seoTagsServiceConfig = await loadSEOTagsServiceConfig({
+    pageUrl: Astro.url.href,
+    itemType: seoTags.ItemType.BLOG_POST,
+    itemData: { slug },
+  });
+} catch {
+  seoTagsServiceConfig = null; // fall back to Wix's default injection if resolution fails
+}
+---
+<Layout>
+	{seoTagsServiceConfig && <SEO.Tags slot="head" seoTagsServiceConfig={seoTagsServiceConfig} />}
+	<App client:only="react" page="post" />
+</Layout>

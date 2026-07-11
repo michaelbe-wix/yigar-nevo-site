@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+// SEO tags:
+//  • Static/main routes (/, /gallery, /בלוג) get their tags injected automatically by the
+//    @wix/astro integration from the dashboard (SEO & GEO → SEO Settings) — do NOT hardcode
+//    them here or they double up.
+//  • Dynamic routes (/gallery/[num], /post/[slug]) are not auto-injected, so those pages
+//    render their own tags into the `head` slot below (single source, no duplication).
+---
+<!doctype html>
+<html lang="he" dir="rtl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{/* Wix's headless runtime shadows the exact names /favicon.svg and /favicon.ico with its
+		   own default icon, so the brand icon is served under non-standard names that pass through. */}
+		<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="icon" type="image/x-icon" href="/icon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<slot name="head" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

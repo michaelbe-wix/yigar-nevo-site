@@ -1,0 +1,80 @@
+{
+  "home": {
+    "url": "https://www.yigarnevo.com/",
+    "title": "אספנות עתיקות ודברים יפים מפעם | דף הבית של יְגַר נבו",
+    "description": "אספנות עתיקות ודברים יפים מפעם, הפריטים שנאספו על ידי החל משנות השישים של המאה הקודמת ולאורך שנים רבות.",
+    "canonical": "https://www.yigarnevo.com",
+    "ogTitle": "אספנות עתיקות ודברים יפים מפעם | דף הבית של יְגַר נבו",
+    "ogDescription": "אספנות עתיקות ודברים יפים מפעם, הפריטים שנאספו על ידי החל משנות השישים של המאה הקודמת ולאורך שנים רבות.",
+    "ogSiteName": "אספנות ודברים יפים",
+    "ogType": "website",
+    "ogImage": null,
+    "jsonLdCount": 2,
+    "jsonLd": {
+      "@context": "https://schema.org/",
+      "@type": "WebSite",
+      "url": "https://www.yigarnevo.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.yigarnevo.com/search?q={search_term}"
+        },
+        "query-input": "required name=search_term"
+      }
+    }
+  },
+  "blog": {
+    "url": "https://www.yigarnevo.com/בלוג",
+    "title": "אספנות עתיקות ודברים יפים מפעם | בלוג של יְגַר נבו",
+    "description": "רשומות אחרונות על אספנות של עתיקות ודברים יפים. תוכלו למצוא מידע ותמונות על משקולות, אבני ריחיים, רעפי מרסיי ועוד ועוד",
+    "canonical": "https://www.yigarnevo.com/בלוג",
+    "ogTitle": "אספנות עתיקות ודברים יפים מפעם | בלוג של יְגַר נבו",
+    "ogDescription": "רשומות אחרונות על אספנות של עתיקות ודברים יפים. תוכלו למצוא מידע ותמונות על משקולות, אבני ריחיים, רעפי מרסיי ועוד ועוד",
+    "ogSiteName": "אספנות ודברים יפים",
+    "ogType": "website",
+    "ogImage": null,
+    "jsonLdCount": 0
+  },
+  "post": {
+    "url": "https://www.yigarnevo.com/post/רעפי-מרסיי-רעפים-שהובאו-לארץ-בין-השנים-1890-1935-1",
+    "title": "רעפי מרסיי, רעפים שהובאו לארץ בין השנים 1890 -  1935",
+    "description": null,
+    "canonical": "https://www.yigarnevo.com/post/רעפי-מרסיי-רעפים-שהובאו-לארץ-בין-השנים-1890-1935-1",
+    "ogTitle": "רעפי מרסיי, רעפים שהובאו לארץ בין השנים 1890 -  1935",
+    "ogDescription": "&quot;רעפי מרסיי&quot; הוא השם שניתן לרעפים שיובאו לארץ מצרפת ממפעלים שהוקמו במחצית המאה התשע עשרה בסביבות העיר מרסיי.הסיפור של רעפי מרסיי מתחיל בהנחת קו רכבת ממרסיי לאבניון, בשנת 1840. במהלך הנחת הקו, קרוב למרסיי, נתקלו הסוללים במרבצי חמרה גדולים מאד המתאימים ליצור רעפים. במקביל לכך, פיתחו בגרמניה תנור שרפה חדשני לחמר (&quot;תנור טבעת&quot;) מה שגרם להוזלה משמעותית ביצור רעפים. מכאן ועד הקמת מפעלים הייתה הדרך קצרה.יצוא תפוזים באותה התקופה מהארץ נעשה מנמל יפו ומכאן השם שניתן לתפוזים בארצות אליהן יובאו, תפוזי &quot;JAFFA",
+    "ogSiteName": "אספנות ודברים יפים",
+    "ogType": "article",
+    "ogImage": "https://static.wixstatic.com/media/7ceb9a_e38633a6de174a6cbfc636292f8c1576~mv2.png/v1/fill/w_832,h_504,al_c,q_90/7ceb9a_e38633a6de174a6cbfc636292f8c1576~mv2.png",
+    "jsonLdCount": 1,
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "author": {
+        "@type": "Person",
+        "name": "Michael Bendahan"
+      },
+      "dateModified": "2025-01-30T08:12:19.786Z",
+      "datePublished": "2024-12-28T15:47:11.097Z",
+      "headline": "רעפי מרסיי, רעפים שהובאו לארץ בין השנים 1890 -  1935",
+      "mainEntityOfPage": {
+        "@id": "https://www.yigarnevo.com/post/רעפי-מרסיי-רעפים-שהובאו-לארץ-בין-השנים-1890-1935-1",
+        "@type": "itemPage",
+        "url": "https://www.yigarnevo.com/post/רעפי-מרסיי-רעפים-שהובאו-לארץ-בין-השנים-1890-1935-1"
+      },
+      "description": "&quot;רעפי מרסיי&quot; הוא השם שניתן לרעפים שיובאו לארץ מצרפת ממפעלים שהוקמו במחצית המאה התשע עשרה בסביבות העיר מרסיי.הסיפור של רעפי מרסיי מתחיל בהנחת קו רכבת ממרסיי לאבניון, בשנת 1840. במהלך הנחת הקו, קרוב למרסיי, נתקלו הסוללים במרבצי חמרה גדולים מאד המתאימים ליצור רעפים. במקביל לכך, פיתחו בגרמניה תנור שרפה חדשני לחמר (&quot;תנור טבעת&quot;) מה שגרם להוזלה משמעותית ביצור רעפים. מכאן ועד הקמת מפעלים הייתה הדרך קצרה.יצוא תפוזים באותה התקופה מהארץ נעשה מנמל יפו ומכאן השם שניתן לתפוזים בארצות אליהן יובאו, תפוזי &quot;JAFFA",
+      "url": "https://www.yigarnevo.com/post/רעפי-מרסיי-רעפים-שהובאו-לארץ-בין-השנים-1890-1935-1",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://static.wixstatic.com/media/7ceb9a_e38633a6de174a6cbfc636292f8c1576~mv2.png/v1/fill/w_832,h_504,al_c,q_90/7ceb9a_e38633a6de174a6cbfc636292f8c1576~mv2.png",
+        "width": "832",
+        "height": "504"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "אספנות ודברים יפים",
+        "url": "https://www.yigarnevo.com"
+      }
+    }
+  }
+}

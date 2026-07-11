@@ -1,0 +1,107 @@
+/* ===== Yigar Nevo Collection — global tokens & keyframes (ported 1:1 from the design prototype) ===== */
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap');
+
+:root{
+  --paper:#FAF6F0; --paper-deep:#F1E9DD; --card:#FFFDF9;
+  --ink:#2B2620; --ink-soft:#6B6357;
+  --terra:#B4553A; --terra-deep:#984431;
+  --olive:#5A6B4F;
+  --line:#E5DED3;
+  --serif:'Alef', system-ui, sans-serif;
+  --sans:'Alef', system-ui, sans-serif;
+  --mono:'Alef', system-ui, sans-serif;
+  --wrap:1100px; --narrow:720px;
+  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px; --s6:96px;
+  --radius:8px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:var(--terra);text-decoration:none;}
+a:hover{color:var(--terra-deep);}
+img{display:block;max-width:100%;}
+p{margin:0 0 1.1em;}
+::selection{background:rgba(180,85,58,.18);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+@keyframes lbFade{from{opacity:0;transform:scale(.985);}to{opacity:1;transform:none;}}
+@keyframes overlayIn{from{opacity:0;}to{opacity:1;}}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-120% 0;}}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--terra);outline-offset:2px;border-radius:4px;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;}
+  html{scroll-behavior:auto;}
+  [data-reveal]{opacity:1!important;}
+}
+@media (max-width:640px){
+  :root{--s6:56px;--s5:44px;--s4:30px;--s3:20px;}
+  .yn-hero{min-height:58vh!important;}
+  .yn-lbnav{display:none!important;}
+  .yn-lbrow{padding-inline:0!important;}
+}
+
+/* ---- hover behaviours (the prototype used a runtime style-hover attr; here they are real CSS) ---- */
+.yn-cta-primary{transition:background .2s ease,transform .2s ease;}
+.yn-cta-primary:hover{background:var(--terra-deep)!important;transform:translateY(-2px);}
+.yn-cta-primary:hover .yn-arrow{transform:translateX(-5px);}
+.yn-arrow{display:inline-block;line-height:1;transition:transform .22s ease;}
+.yn-cta-ghost{transition:background .2s ease,transform .2s ease,border-color .2s ease;}
+.yn-cta-ghost:hover{background:rgba(252,247,239,.22)!important;transform:translateY(-2px);border-color:rgba(252,247,239,.75)!important;}
+
+.yn-card{transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;}
+.yn-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(43,38,32,.12);}
+.yn-card:hover .yn-card-img{transform:scale(1.05);}
+.yn-card-img{transition:transform .5s ease;}
+
+.yn-galcard{transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;}
+.yn-galcard:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(43,38,32,.13);border-color:#D8CFC0;}
+.yn-galcard:hover .yn-galimg{transform:scale(1.045);}
+.yn-galimg{transition:transform .5s ease;}
+
+.yn-feature{transition:transform .24s ease,box-shadow .24s ease;}
+.yn-feature:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(43,38,32,.12);}
+.yn-blogteaser{transition:box-shadow .24s ease;}
+.yn-blogteaser:hover{box-shadow:0 16px 34px rgba(43,38,32,.12);}
+
+/* nav link underline grows from the right (RTL) */
+.yn-nav-link{position:relative;padding:6px 1px;color:var(--ink);transition:color .2s ease;}
+.yn-nav-link .yn-underline{position:absolute;right:0;bottom:-4px;height:2px;width:100%;background:var(--terra);border-radius:2px;transform-origin:right;transform:scaleX(0);transition:transform .3s cubic-bezier(.4,0,.2,1);}
+.yn-nav-link:hover .yn-underline{transform:scaleX(1);}
+.yn-nav-link.active{color:var(--terra);}
+.yn-nav-link.active .yn-underline{transform:scaleX(1);}
+
+.yn-search:focus{border-color:var(--terra)!important;box-shadow:0 0 0 3px rgba(180,85,58,.12);}
+
+.yn-chip{transition:background .2s ease,color .2s ease,border-color .2s ease;}
+.yn-viewbtn{transition:background .2s ease,color .2s ease;}
+
+/* reserve side gutters so the prev/next arrows never overlap the image or description (arrows are hidden ≤640px) */
+.yn-lbrow{padding-inline:84px;}
+.yn-lbbtn{transition:background .2s ease;}
+.yn-lbbtn:hover{background:rgba(252,247,239,.2)!important;}
+.yn-share-wa{transition:background .2s ease,border-color .2s ease;}
+.yn-share-wa:hover{background:rgba(252,247,239,.12)!important;border-color:rgba(252,247,239,.7)!important;}
+.yn-share-copy{transition:background .2s ease,border-color .2s ease;}
+.yn-share-copy:hover{background:rgba(252,247,239,.12)!important;border-color:rgba(252,247,239,.7)!important;}
+
+.yn-post-wa{transition:background .2s ease;}
+.yn-post-wa:hover{background:rgba(90,107,79,.1)!important;}
+.yn-post-copy{transition:border-color .2s ease,color .2s ease;}
+.yn-post-copy:hover{border-color:var(--terra)!important;color:var(--terra)!important;}
+.yn-maker{transition:background .2s ease,color .2s ease,border-color .2s ease;}
+.yn-maker:hover{background:var(--terra)!important;color:#FCF7EF!important;border-color:var(--terra)!important;}
+
+.yn-topbtn{transition:opacity .25s ease,transform .25s ease;}
+.yn-close:hover{background:rgba(252,247,239,.2)!important;}
+
+/* ---- Wix Ricos (native blog post body) — nudge toward the site's typography ---- */
+.yn-ricos{font-family:var(--sans);color:var(--ink);}
+.yn-ricos h1,.yn-ricos h2,.yn-ricos h3,.yn-ricos h4{font-family:var(--serif)!important;color:var(--ink)!important;scroll-margin-top:80px;}
+.yn-ricos a{color:var(--terra);}
+.yn-ricos img{border-radius:var(--radius);}
+.yn-ricos ol,.yn-ricos ul{padding-inline-start:1.6em;margin:0 0 1.1em;}
+.yn-ricos ol{list-style:decimal;}
+.yn-ricos li{margin:.25em 0;line-height:1.7;}

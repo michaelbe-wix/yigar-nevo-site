@@ -1,0 +1,10 @@
+---
+// Blog index — served at an ASCII path (/blog). A non-ASCII path (/בלוג) breaks Wix's
+// SEO "Main Pages" name derivation (it collapses to "HOME" and collides with the real
+// homepage), so we use /blog here and 301 the old /בלוג to it in middleware.
+import Layout from '../layouts/Layout.astro';
+import App from '../components/App.tsx';
+---
+<Layout>
+	<App client:only="react" page="blog" />
+</Layout>

@@ -1,0 +1,8 @@
+---
+// Home is a static/main route — SEO tags come from the Wix dashboard (SEO Settings → Main Pages).
+import Layout from '../layouts/Layout.astro';
+import App from '../components/App.tsx';
+---
+<Layout>
+	<App client:only="react" page="home" />
+</Layout>

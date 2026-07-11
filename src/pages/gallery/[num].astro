@@ -1,0 +1,17 @@
+---
+// Gallery item page. SEO tags are injected by the Wix integration (single source),
+// so we don't render our own here — that would duplicate the title/canonical.
+// We still resolve the item server-side to return a real 404 for unknown numbers
+// (matching the old site) and to hydrate the lightbox on the right item.
+import Layout from '../../layouts/Layout.astro';
+import App from '../../components/App.tsx';
+import { getItemServer } from '../../lib/galleryData';
+
+const raw = Astro.params.num ?? '';
+const num = /^\d+$/.test(raw) ? parseInt(raw, 10) : NaN;
+const item = Number.isFinite(num) ? await getItemServer(num) : null;
+if (!item) return new Response('Not Found', { status: 404 });
+---
+<Layout>
+	<App client:only="react" page="gallery" num={num} />
+</Layout>
