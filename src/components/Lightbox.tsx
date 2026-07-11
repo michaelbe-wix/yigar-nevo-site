@@ -37,7 +37,13 @@ export default function Lightbox({
       closeRef.current?.focus();
     }
     return () => {
-      prevFocus?.focus?.();
+      // preventScroll: returning focus to the gallery card must not scroll it
+      // into view — the page is already at the right position on close.
+      try {
+        prevFocus?.focus?.({ preventScroll: true });
+      } catch {
+        prevFocus?.focus?.();
+      }
     };
   }, []);
 
@@ -69,7 +75,10 @@ export default function Lightbox({
       body.style.right = prev.right;
       body.style.width = prev.width;
       body.style.overflow = prev.overflow;
-      window.scrollTo(0, y);
+      // 'instant' so the restore is a jump, not a smooth animated scroll — the
+      // global `scroll-behavior:smooth` would otherwise animate from the top
+      // (window.scrollY is 0 while the body is fixed) back down to the item.
+      window.scrollTo({ top: y, left: 0, behavior: 'instant' });
     };
   }, []);
 
@@ -115,7 +124,10 @@ export default function Lightbox({
         alignItems: 'center',
         justifyContent: 'safe center',
         overflowY: 'auto',
-        padding: full ? 12 : 24,
+        // Extra top padding clears the close/fullscreen controls (top:18, 46px
+        // tall) so that when content overflows and top-aligns, the image never
+        // slides up underneath those buttons.
+        padding: full ? 12 : '78px 24px 32px',
         animation: 'overlayIn .22s ease-out',
       }}
     >
@@ -167,6 +179,11 @@ export default function Lightbox({
           cursor: 'pointer',
           transition: 'background .2s ease',
           zIndex: 4,
+          // Center the inline SVG glyph — without flex it aligns to the text
+          // baseline and sits slightly high/off-center in the round button.
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         {full ? (
@@ -203,8 +220,14 @@ export default function Lightbox({
           WebkitBackdropFilter: 'blur(4px)',
           color: '#FCF7EF',
           fontSize: 24,
+          lineHeight: 1,
           cursor: 'pointer',
           zIndex: 3,
+          // Center the arrow glyph — otherwise it aligns to the text baseline
+          // and sits off-center in the round button.
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         ›
@@ -227,6 +250,10 @@ export default function Lightbox({
           borderRadius: '50%',
           border: '1px solid rgba(252,247,239,.5)',
           background: 'rgba(20,17,12,.6)',
+          lineHeight: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           backdropFilter: 'blur(4px)',
           WebkitBackdropFilter: 'blur(4px)',
           color: '#FCF7EF',
@@ -292,8 +319,12 @@ export default function Lightbox({
         <div
           style={{
             display: full ? 'none' : 'block',
-            flex: '0 1 340px',
-            minWidth: 'min(100%,260px)',
+            // Grow to fill available width (capped for a comfortable reading
+            // measure) — otherwise the description stays a narrow 340px column
+            // even when the layout wraps and there is room for much more.
+            flex: '1 1 380px',
+            minWidth: 'min(100%,280px)',
+            maxWidth: 640,
             maxHeight: '74vh',
             overflow: 'auto',
             color: '#FCF7EF',
@@ -402,6 +433,9 @@ function LbImage({
   const pinch = useRef<{ dist: number; scale: number } | null>(null);
   const pan = useRef<{ x: number; y: number; tx: number; ty: number } | null>(null);
   const lastTap = useRef(0);
+  // Pointer type of the last press, so a single click zooms on desktop (mouse/pen)
+  // while touch keeps double-tap/pinch (a touch tap must not zoom).
+  const lastPointerType = useRef<string>('mouse');
   const zoomedRef = useRef(false);
   // Higher-resolution source used once zoomed in past 1x.
   const zoomSrc = src.replace(/(\/v1\/(?:fit|fill)\/)w_\d+,h_\d+/, '$1w_4000,h_4000');
@@ -456,7 +490,13 @@ function LbImage({
   return (
     <div
       ref={containerRef}
-      onDoubleClick={(e) => {
+      onPointerDown={(e) => {
+        lastPointerType.current = e.pointerType || 'mouse';
+      }}
+      onClick={(e) => {
+        // Desktop (mouse/pen): a single click toggles zoom, centered on the
+        // click point. Touch is handled by the double-tap/pinch handlers below.
+        if (lastPointerType.current === 'touch') return;
         e.stopPropagation();
         toggleZoom(e.clientX, e.clientY);
       }}
@@ -531,7 +571,7 @@ function LbImage({
         maxWidth: full ? '100%' : undefined,
         overflow: 'hidden',
         touchAction: 'none',
-        cursor: full ? (scale > 1 ? 'zoom-out' : 'zoom-in') : 'default',
+        cursor: scale > 1 ? 'zoom-out' : 'zoom-in',
         animation: 'lbFade .28s ease-out both',
       }}
     >

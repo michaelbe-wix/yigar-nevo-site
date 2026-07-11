@@ -52,7 +52,10 @@ export default function App({ page, num }: { page?: Route; num?: number }) {
     setNav(next);
     const nextPath = decodePath();
     if (!opts.keepScroll && nextPath !== prevPath.current) {
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      // 'instant' (not 'auto') so the global `scroll-behavior:smooth` doesn't
+      // animate the reset — otherwise a new route (e.g. a blog post whose body
+      // loads async) can settle a bit below the top instead of at it.
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
     prevPath.current = nextPath;
   };
